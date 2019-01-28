@@ -111,12 +111,18 @@ export default {
       //   method: 'post',
       //   url: '',
       //   params: {}
-      // }).then(res => {
-      //   console.log(res);
-      // });
-      this.$dialog.alert({
-        message: '提交成功~'
-      });
+      // })
+      //   .then(res => {
+      //     console.log(res);
+      //     this.$dialog.alert({
+      //       message: '提交成功~'
+      //     });
+      //   })
+      //   .catch(() => {
+      //     this.$dialog.alert({
+      //       message: '提交失败~'
+      //     });
+      //   });
     }
   }
 };
