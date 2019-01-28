@@ -1,58 +1,54 @@
 <template>
   <div id="info" class="wrap">
-    <section>
-      <h2 class="p-title">性别:</h2>
-      <van-radio-group v-model="sex">
-        <van-cell-group>
-          <van-cell title="男" clickable @click="sex = 'male'">
-            <van-radio name="male"/>
-          </van-cell>
-          <van-cell title="女" clickable @click="sex = 'female'">
-            <van-radio name="female"/>
-          </van-cell>
-        </van-cell-group>
-      </van-radio-group>
-    </section>
-    <section>
-      <h2 class="p-title">生活照:</h2>
-      <div class="input-label">
-        <!-- <van-icon v-if="!photo" name="photo"/> -->
-        <img v-if="photo" :src="photo" class="photo-img">
-      </div>
-      <van-uploader
-        class="input-label"
-        :after-read="onRead"
-        accept="image/png, image/jpeg"
-        multiple
-      >
-        <van-icon class="font20" name="photograph"/>
-      </van-uploader>
-    </section>
-    <section>
-      <h2 class="p-title">自我特点介绍及基本情况:</h2>
-      <van-field v-model="selfText" placeholder="请输入" type="textarea" autosize/>
-    </section>
-    <section>
-      <h2 class="p-title">工作及受教育情况:</h2>
-      <van-field v-model="workText" placeholder="请输入" type="textarea" autosize/>
-    </section>
-    <section>
-      <h2 class="p-title">情感经历及分手原因:</h2>
-      <van-field v-model="breakText" placeholder="请输入" type="textarea" autosize/>
-    </section>
-    <section>
-      <h2 class="p-title">期望对方:</h2>
-      <van-field v-model="expectText" placeholder="请输入" type="textarea" autosize/>
-    </section>
-    <section>
-      <van-button
-        type="default"
-        :loading="loading"
-        :disabled="loading"
-        class="up-btn"
-        @click="submit()"
-      >提交</van-button>
-    </section>
+    <form action="http://www.xunaicc.com/index.php?c=member&p=photo" method="post" enctype="multipart/form-data">
+      <section>
+        <h2 class="p-title">性别:</h2>
+        <van-radio-group v-model="sex">
+          <van-cell-group>
+            <van-cell title="男" clickable @click="sex = 'male'">
+              <van-radio name="male"/>
+            </van-cell>
+            <van-cell title="女" clickable @click="sex = 'female'">
+              <van-radio name="female"/>
+            </van-cell>
+          </van-cell-group>
+        </van-radio-group>
+      </section>
+      <section>
+        <h2 class="p-title">生活照:</h2>
+        <div class="input-label">
+          <!-- <van-icon v-if="!photo" name="photo"/> -->
+          <img v-if="photo" :src="photo" class="photo-img">
+        </div>
+        <van-uploader
+          class="input-label"
+          :after-read="onRead"
+          accept="image/png, image/jpeg"
+          multiple
+        >
+          <van-icon class="font20" name="photograph"/>
+        </van-uploader>
+      </section>
+      <section>
+        <h2 class="p-title">自我特点介绍及基本情况:</h2>
+        <van-field v-model="selfText" placeholder="请输入" type="textarea" autosize/>
+      </section>
+      <section>
+        <h2 class="p-title">工作及受教育情况:</h2>
+        <van-field v-model="workText" placeholder="请输入" type="textarea" autosize/>
+      </section>
+      <section>
+        <h2 class="p-title">情感经历及分手原因:</h2>
+        <van-field v-model="breakText" placeholder="请输入" type="textarea" autosize/>
+      </section>
+      <section>
+        <h2 class="p-title">期望对方:</h2>
+        <van-field v-model="expectText" placeholder="请输入" type="textarea" autosize/>
+      </section>
+      <section>
+        <van-button type="default" :loading="loading" :disabled="loading" class="up-btn">提交</van-button>
+      </section>
+    </form>
     <!-- <van-loading color="white" class="dia-loading"/> -->
   </div>
 </template>
@@ -102,6 +98,7 @@ export default {
       this.photo = file.content;
     },
     submit() {
+      const that = this;
       if (this.loading) {
         return;
       }
@@ -109,8 +106,11 @@ export default {
       console.log('submit');
       // this.$ajax({
       //   method: 'post',
-      //   url: '',
-      //   params: {}
+      //   url: 'http://www.xunaicc.com/index.php?c=member&p=photo',
+      //   params: {
+      //     sex: that.sex,
+      //     photo: that.photo
+      //   }
       // })
       //   .then(res => {
       //     console.log(res);
