@@ -70,6 +70,7 @@ import {
   Loading,
   Dialog
 } from 'vant';
+
 export default {
   name: 'info',
   components: {
